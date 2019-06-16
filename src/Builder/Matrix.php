@@ -2,16 +2,11 @@
 
 namespace App\Builder;
 
-abstract class Matrix
+final class Matrix
 {
-    protected const DEFAULT_EMPTY_VALUE = "@";
+    public const DEFAULT_EMPTY_VALUE = false;
 
-    public function build(int $length)
-    {
-        return self::serve($length);
-    }
-
-    final static public function serve(int $length)
+    final static public function build(int $length)
     {
         $matrix = [];
         for ($i = 0; $i < $length; $i++) {

@@ -10,7 +10,7 @@ final class MatrixTest extends TestCase
     public function testInvalidLengthTypeThrows()
     {
         $this->expectException(\TypeError::class);
-        Matrix::serve("test");
+        Matrix::build("test");
     }
 
     /**
@@ -18,7 +18,7 @@ final class MatrixTest extends TestCase
      */
     public function testMatrixValidity($length)
     {
-        $matrix = Matrix::serve($length);
+        $matrix = Matrix::build($length);
         $this->assertTrue(is_array($matrix));
         $this->assertEquals($length, count($matrix));
         foreach ($matrix as $key => $row) {

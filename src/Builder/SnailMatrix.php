@@ -2,7 +2,7 @@
 
 namespace App\Builder;
 
-class SnailMatrix extends Matrix
+class SnailMatrix
 {
     private const DIR_RIGHT = "right";
     private const DIR_BOTTOM = "bottom";
@@ -22,7 +22,7 @@ class SnailMatrix extends Matrix
 
     public function build(int $length): array
     {
-        $this->matrix = parent::build($length);
+        $this->matrix = Matrix::build($length);
         $this->maxLength = $length * $length;
 
         do {
@@ -57,25 +57,25 @@ class SnailMatrix extends Matrix
         switch ($this->cursorDirection) {
             case self::DIR_RIGHT:
                 if (!isset($this->matrix[$this->cursorCoordinates["y"]][$this->cursorCoordinates["x"] + 1])
-                    || self::DEFAULT_EMPTY_VALUE !== $this->matrix[$this->cursorCoordinates["y"]][$this->cursorCoordinates["x"] + 1]) {
+                    || Matrix::DEFAULT_EMPTY_VALUE !== $this->matrix[$this->cursorCoordinates["y"]][$this->cursorCoordinates["x"] + 1]) {
                     $this->cursorDirection = self::DIR_BOTTOM;
                 }
                 break;
             case self::DIR_BOTTOM:
                 if (!isset($this->matrix[$this->cursorCoordinates["y"] + 1])
-                    || self::DEFAULT_EMPTY_VALUE !== $this->matrix[$this->cursorCoordinates["y"] + 1][$this->cursorCoordinates["x"]]) {
+                    || Matrix::DEFAULT_EMPTY_VALUE !== $this->matrix[$this->cursorCoordinates["y"] + 1][$this->cursorCoordinates["x"]]) {
                     $this->cursorDirection = self::DIR_LEFT;
                 }
                 break;
             case self::DIR_LEFT:
                 if (!isset($this->matrix[$this->cursorCoordinates["y"]][$this->cursorCoordinates["x"] - 1])
-                    || self::DEFAULT_EMPTY_VALUE !== $this->matrix[$this->cursorCoordinates["y"]][$this->cursorCoordinates["x"] - 1]) {
+                    || Matrix::DEFAULT_EMPTY_VALUE !== $this->matrix[$this->cursorCoordinates["y"]][$this->cursorCoordinates["x"] - 1]) {
                     $this->cursorDirection = self::DIR_TOP;
                 }
                 break;
             case self::DIR_TOP:
                 if (!isset($this->matrix[$this->cursorCoordinates["y"] - 1])
-                    || self::DEFAULT_EMPTY_VALUE !== $this->matrix[$this->cursorCoordinates["y"] - 1][$this->cursorCoordinates["x"]]) {
+                    || Matrix::DEFAULT_EMPTY_VALUE !== $this->matrix[$this->cursorCoordinates["y"] - 1][$this->cursorCoordinates["x"]]) {
                     $this->cursorDirection = self::DIR_RIGHT;
                 }
                 break;
